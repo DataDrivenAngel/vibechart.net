@@ -21,34 +21,7 @@
             overflow: hidden;
         }
         
-        /* Vaporwave background pattern */
-        .vaporwave-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            animation: fadeInVaporwave 1s ease-in-out 3s forwards;
-            pointer-events: none;
-            z-index: -1;
-            perspective: 1000px;
-            perspective-origin: center center;
-        }
-        
-        .vaporwave-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(45deg, transparent 40%, rgba(255, 0, 255, 0.03) 50%, transparent 60%),
-                linear-gradient(-45deg, transparent 40%, rgba(0, 255, 255, 0.03) 50%, transparent 60%);
-            animation: vaporwaveFloat 2s ease-in-out infinite;
-            will-change: transform;
-        }
+
         
         /* Cyberpunk horizon grid - optimized */
         .cyberpunk-grid {
@@ -61,7 +34,7 @@
             animation: fadeInVaporwave 2s ease-in-out 3s forwards, colorCycle 5s linear infinite;
             pointer-events: none;
             z-index: -2;
-            transform-style: preserve-3d;
+            transform-style:flat ;
             perspective: 1000px;
             perspective-origin: center top;
         }
@@ -78,15 +51,15 @@
                     90deg,
                     transparent,
                     transparent 40px,
-                    rgba(255, 0, 255, 0.08) 40px,
-                    rgba(255, 0, 255, 0.04) 41px
+                    rgba(255, 0, 255, 0.378) 40px,
+                    rgba(255, 0, 255, 0.152) 41px
                 ),
                 repeating-linear-gradient(
                     0deg,
                     transparent,
                     transparent 40px,
-                    rgba(0, 255, 255, 0.02) 40px,
-                    rgba(0, 255, 255, 0.02) 41px
+                    rgba(140, 0, 255, 0.475) 40px,
+                    rgba(255, 183, 0, 0.842) 41px
                 );
             transform: translateX(-50%) rotateX(45deg) scale(1.5);
             transform-origin: center top;
