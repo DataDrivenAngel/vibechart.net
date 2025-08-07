@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>VIBECHART.NET</title>
+    <link rel="icon" type="image/svg+xml" href="favi.svg">
     <style>
         body {
             font-family: serif;
@@ -14,17 +15,200 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            position: relative;
+            overflow: hidden;
         }
+        
+        /* Vaporwave background pattern */
+        .vaporwave-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: fadeInVaporwave 3s ease-in-out 5s forwards;
+            pointer-events: none;
+            z-index: -1;
+            perspective: 1000px;
+            perspective-origin: center center;
+        }
+        
+        .vaporwave-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 40%, rgba(255, 0, 255, 0.03) 50%, transparent 60%),
+                linear-gradient(-45deg, transparent 40%, rgba(0, 255, 255, 0.03) 50%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.02) 0%, transparent 50%);
+            animation: vaporwaveFloat 2s ease-in-out infinite;
+        }
+        
+        .vaporwave-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255, 0, 255, 0.01) 50px,
+                    rgba(255, 0, 255, 0.01) 51px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(0, 255, 255, 0.01) 50px,
+                    rgba(0, 255, 255, 0.01) 51px
+                );
+            animation: vaporwaveGrid 5s linear infinite;
+        }
+        
+        /* Cyberpunk horizon grid */
+        .cyberpunk-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: fadeInVaporwave 2s ease-in-out 3s forwards, colorCycle 15s linear infinite;
+            pointer-events: none;
+            z-index: -2;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            perspective-origin: center top;
+        }
+        
+        .cyberpunk-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 200vw;
+            height: 200vh;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(255, 0, 255, 0.10) 40px,
+                    rgba(255, 0, 255, 0.05) 41px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(0, 255, 255, 0.02) 40px,
+                    rgba(0, 255, 255, 0.02) 41px
+                );
+            transform: translateX(-50%) rotateX(45deg) scale(2);
+            transform-origin: center top;
+            animation: gridFloat 2s ease-in-out infinite, gridFlow 4s linear infinite;
+        }
+        
+        .cyberpunk-grid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 300vw;
+            height: 300vh;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(255, 0, 255, 0.01) 80px,
+                    rgba(255, 0, 255, 0.01) 81px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(0, 255, 255, 0.01) 80px,
+                    rgba(0, 255, 255, 0.01) 81px
+                );
+            transform: translateX(-50%) rotateX(45deg) scale(3);
+            transform-origin: center top;
+            animation: gridFloat 6s ease-in-out infinite reverse, gridFlow 6s linear infinite reverse;
+        }
+        
+        @keyframes fadeInVaporwave {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes vaporwaveFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(-5px) rotate(-1deg); }
+            75% { transform: translateY(-15px) rotate(0.5deg); }
+        }
+        
+        @keyframes vaporwaveGrid {
+            0% { transform: translateX(0px) translateY(0px); }
+            100% { transform: translateX(50px) translateY(50px); }
+        }
+        
+        @keyframes gridFloat {
+            0%, 100% { 
+                transform: translateX(-50%) rotateX(45deg) scale(2) translateY(0px);
+            }
+            50% { 
+                transform: translateX(-50%) rotateX(45deg) scale(2) translateY(-10px);
+            }
+        }
+        
+        @keyframes gridFlow {
+            0% { 
+                background-position: 0px 0px, 0px 0px;
+            }
+            100% { 
+                background-position: 40px 40px, -40px 40px;
+            }
+        }
+        
+        @keyframes colorCycle {
+            0% { 
+                filter: hue-rotate(0deg);
+            }
+            33.33% { 
+                filter: hue-rotate(120deg);
+            }
+            66.66% { 
+                filter: hue-rotate(240deg);
+            }
+            100% { 
+                filter: hue-rotate(360deg);
+            }
+        }
+        
         .container {
             text-align: left;
             max-width: 600px;
             padding: 2em;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
         .term {
             font-weight: bold;
-            font-size: 2em;
+            font-size: 4em;
             letter-spacing: 0.05em;
             margin-bottom: 0.5em;
+            animation: colorCycle 15s linear infinite 15s;
         }
         .etymology {
             font-style: italic;
@@ -60,6 +244,8 @@
     </style>
 </head>
 <body>
+    <div class="vaporwave-bg"></div>
+    <div class="cyberpunk-grid"></div>
     <div class="container">
         <div class="term">vibechart</div>
         <div class="etymology">[From vibe + chart: cf. subjective interpretation + <a href="https://www.datavisualizationsociety.org/">data visualization.</a> See <a href="https://www.drawaurora.com/">Vibe</a>, and cf. <a href="https://chartscss.org/">Chart</a>.]</div>
