@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            animation: fadeInVaporwave 3s ease-in-out 5s forwards;
+            animation: fadeInVaporwave 1s ease-in-out 3s forwards;
             pointer-events: none;
             z-index: -1;
             perspective: 1000px;
@@ -46,7 +46,7 @@
             background: 
                 linear-gradient(45deg, transparent 40%, rgba(255, 0, 255, 0.03) 50%, transparent 60%),
                 linear-gradient(-45deg, transparent 40%, rgba(0, 255, 255, 0.03) 50%, transparent 60%);
-            animation: vaporwaveFloat 3s ease-in-out infinite;
+            animation: vaporwaveFloat 2s ease-in-out infinite;
             will-change: transform;
         }
         
@@ -58,7 +58,7 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            animation: fadeInVaporwave 2s ease-in-out 3s forwards, colorCycle 3s linear infinite;
+            animation: fadeInVaporwave 2s ease-in-out 3s forwards, colorCycle 5s linear infinite;
             pointer-events: none;
             z-index: -2;
             transform-style: preserve-3d;
@@ -141,6 +141,24 @@
             }
         }
         
+        @keyframes glowEffect {
+            0% {
+                text-shadow: 0 0 0px currentColor, 0 0 0px currentColor, 0 0 0px currentColor;
+            }
+            20% {
+                text-shadow: 0 0 2px currentColor, 0 0 4px currentColor, 0 0 6px currentColor;
+            }
+            50% {
+                text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+            }
+            80% {
+                text-shadow: 0 0 2px currentColor, 0 0 4px currentColor, 0 0 6px currentColor;
+            }
+            100% {
+                text-shadow: 0 0 0px currentColor, 0 0 0px currentColor, 0 0 0px currentColor;
+            }
+        }
+        
         .container {
             text-align: left;
             max-width: 800px;
@@ -153,7 +171,7 @@
         
         /* Add color animation to text elements only */
         .text-content {
-            animation: colorCycle 15s linear infinite 5s;
+            animation: colorCycle 5s linear infinite 5s;
             will-change: filter;
         }
         
@@ -162,6 +180,11 @@
             font-size: 4.5em;
             letter-spacing: 0.05em;
             margin-bottom: 0.5em;
+            color: #770082;
+            animation: 
+                colorCycle 5s linear infinite 3s,
+                glowEffect 9s ease-in-out infinite 21s;
+            will-change: filter, text-shadow;
         }
         .etymology {
             font-style: italic;
@@ -207,7 +230,9 @@
             </div>
         </div>
         <span id="image-container">
-            <img id="vibechart-image" src="vibechart.jpg" alt="Misleading Bar chart from OpenAI's GPT5 release showing that 69% is bigger than 54% due to not having accurately scaled axes" width="396" height="425">
+            <a href="https://bsky.app/profile/tylermw.com/post/3lvtac5hues2n" target="_blank" rel="noopener noreferrer">
+                <img id="vibechart-image" src="vibechart.jpg" alt="Misleading Bar chart from OpenAI's GPT5 release showing that 69% is bigger than 54% due to not having accurately scaled axes" width="396" height="425">
+            </a>
         </span>
     </div>
 </body>
